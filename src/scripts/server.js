@@ -1,7 +1,7 @@
 
 const express = require('express')
 const mongoose = require('mongoose')
-const bodyParser = require('body--parser')
+const bodyParser = require('body-parser')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -41,3 +41,6 @@ app.post('/api/login', async (req, res) => {
     pegar os dados pro grafico
 */
 
+app.listen(port, () => {
+    console.log(`server rodando na porta ${port}`)
+})
