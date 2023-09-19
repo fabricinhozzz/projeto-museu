@@ -2,7 +2,7 @@
 ## froggers
 ### 19/09
 ate agr, já fiz uma parte do back, basicamente, eu, alem de chamar as ferramentas
-extras isso no server.js, declarei que o express vai ouvir à porta 3000, e no final ainda
+extras (isso no server.js), declarei que o express vai ouvir à porta 3000, e no final ainda
 coloquei uma mensagem pra aparecer no terminal, só pra confirmar que ta conectado msm
 
 alem disso, fiz a autenticação e redirecionamento com base no tipo de usuario,
