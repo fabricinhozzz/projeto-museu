@@ -8,6 +8,9 @@ coloquei uma mensagem pra aparecer no terminal, só pra confirmar que ta conecta
 alem disso, fiz a autenticação e redirecionamento com base no tipo de usuario,
 fazendo com que só entre nuum determinado perfil, caso a senha seja a msm, e vice-versa
 
+aaah, quase esqueci, em algum dos html, eu fiz a estrutura basica pra vcs alterarem o grafico
+dinamico, se baseando na lib chart.js
+
 
 <br>
 
