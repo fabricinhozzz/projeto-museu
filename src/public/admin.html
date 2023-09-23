@@ -1,0 +1,42 @@
+
+<!--mudem qlqr coisa, menos nomes de variaveis-->
+
+<h2>grafico dinamico pro admin</h2>
+<h2>estilizem essa interface aqui, pra não ficar o bagui que o gominho mandou na primeira call skjsksjskj</h2>
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const charData = {
+        labels: ["Positivo", "Negativo"],
+        datasets: [ 
+            {
+            label: "Feedback",
+            data: [0, 1], //a gente tem que ver como adicionar os dados dinamicos pro grafico, isso na lib do chart.js
+            backgroundColor: ["#dc143c", "#00ffff"],
+            borderColor: ["", ""],
+            borderWidth: 1
+            }
+        ]
+    }
+
+    let ctx = document.getElementById("myChart").getContext("2d")
+    let myChart = new Chart(ctx, {
+        type: "pie",
+        data: charData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    })
+
+
+
+
+</script>
+
+<script src="../scripts/server.js"></script>
+<script src="../scripts/main.js"></script>
