@@ -5,35 +5,47 @@ const bodyParser = require('body-parser')
 
 const app = express()
 const port = process.env.PORT || 3000
-// se não tiver abrindo, ou executando algo, tente mudar o numero da porta
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.static('public'))
+
+const adminCredentials = { username: 'admin', password: 'comunismo' }
 
 
 /*
-    modelagem de dados
+    modelagem de dados dos clientes
 */
 
 
-app.use(bodyParser.json())
+let nextClientId = clientsDB.length + 1
 
-app.post('/api/login', async (req, res) => {
+// posso ter errado os caminhos pro login, etc, só vai dar pra saber testando
+app.post('../public/login.html', (req, res) => {
     const { username, password } = req.body
-    const user = await User.findOne({ username, password }).exec()
 
-    if (!user) {
-        return res.status(401).json({ message: 'Credenciais inválidas'})
+    if (username === adminCredentials.username && password === adminCredentials.password) {
+        res.redirect('./admin.html')
+    } else{
+        const client = clientsDB.find((client) => client.username === username)
+
+        if (client) {
+            if (client.password === password) {
+                res.redirect('../public/client.html')
+            } else{
+                res.send("erro: usuário ou senha incorreta!")
+            }
+        } else{
+            const newClient = { id: nextClientId++, username, password }
+            clientsDB.push(newClient)
+
+            res.send(`cadastro bem sucedido! você comprou o ingresso de número ${newClient.id}`)
+        }
     }
-
-    res.json({ type: user.type })
 })
 
 
 /*
     envio de feedback
-*/
-
-
-/*
-    adicionar dados pelo admin
 */
 
 

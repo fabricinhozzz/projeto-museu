@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login | Museu Multitemático </title>
+</head>
+
+<body>
+    <h1>Tela de Login</h1>
+    <form action="../public/login.html" method="post"> <!--posso ter errado aqui tbm, vamo ver depois-->
+        <label for="username">nome de usuário</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">senha</label>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="login">
+    </form>
+
+    <p>se vc não tem um ingresso, será cadastrado com  um novo ingresso ao fazer login com um novo nome de usuário e senha </p>
+    <div id="message"></div>
+
+    <script>
+        const messageDiv = document.getElementById('message')
+        const urlParams = new URLSearchParams(window.location.search)
+        const message = urlParams.get('message')
+
+        if (message) {
+            messageDiv.innerText = message
+        }
+    </script>
+
+    <script src="../scripts/server.js"></script>
+    <script src="../scripts/main.js"></script>
+</body>
+</html>
