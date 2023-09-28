@@ -15,7 +15,10 @@ refiz o sisteminha de autenticação, agr, quem não tem cadastro, faz um novo (
 mensagem dizendo que recebeu o ingresso de numero x), e quem tem, já é redirecionado pra client.html
 (lugar onde vai ficar a pag básica, com os conteudos)
 
-tbm pré cadastrei os dados do admin
+tbm pré cadastrei os dados do admin~
+
+
+terminei o bagui ksjskjskjskjs
 
 
 <br>
