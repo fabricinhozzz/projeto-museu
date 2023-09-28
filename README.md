@@ -1,6 +1,6 @@
 
 ## froggers
-### 23/09
+### 28/09
 ate agr, já fiz uma parte do back, basicamente, eu, alem de chamar as ferramentas
 extras (isso no server.js), declarei que o express vai ouvir à porta 3000, e no final ainda
 coloquei uma mensagem pra aparecer no terminal, só pra confirmar que ta conectado msm
@@ -17,8 +17,7 @@ mensagem dizendo que recebeu o ingresso de numero x), e quem tem, já é redirec
 
 tbm pré cadastrei os dados do admin~
 
-
-terminei o bagui ksjskjskjskjs
+### terminei o bagui ksjskjskjskjs
 
 
 <br>
