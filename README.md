@@ -1,25 +1,48 @@
 
-## froggers
-### 28/09
-ate agr, já fiz uma parte do back, basicamente, eu, alem de chamar as ferramentas
-extras (isso no server.js), declarei que o express vai ouvir à porta 3000, e no final ainda
-coloquei uma mensagem pra aparecer no terminal, só pra confirmar que ta conectado msm
+# Documentação da API
 
-~~alem disso, fiz a autenticação e redirecionamento com base no tipo de usuario,~~
-~~fazendo com que só entre nuum determinado perfil, caso a senha seja a msm, e vice-versa~~
+Esta API é um sistema de feedback e administração de dados, implementada em JavaScript usando Node.js e Express. Ela utiliza o MongoDB Atlas como banco de dados na nuvem e o Mongoose como biblioteca de modelagem de dados de objeto para interação com o MongoDB. 
 
-aaah, quase esqueci, em algum dos html, eu fiz a estrutura basica pra vcs alterarem o grafico
-dinamico, se baseando na lib chart.js
+## Autenticação e Perfil de Usuário
 
-refiz o sisteminha de autenticação, agr, quem não tem cadastro, faz um novo (e recebe uma
-mensagem dizendo que recebeu o ingresso de numero x), e quem tem, já é redirecionado pra client.html
-(lugar onde vai ficar a pag básica, com os conteudos)
+### Modelo de Usuário
 
-tbm pré cadastrei os dados do admin~
+A API utiliza o Mongoose para criar um modelo de usuário, o qual representa os dados do usuário no sistema. A conta do administrador é tratada de forma estática e é pré-definida no código, impedindo a criação de outra conta de administrador externamente.
 
-### terminei o bagui ksjskjskjskjs
+### Rota de Autenticação
 
+A rota de autenticação do servidor verifica as credenciais do usuário. Por exemplo, se um usuário já visitou o museu uma vez, ele não pode acessar novamente com as mesmas credenciais.
 
-<br>
+## Feedback do Usuário
 
-### por enquanto, vamo fazer as anotações por aqui
+### Modelo de Envio de Dados
+
+A API utiliza o modelo de envio de dados para armazenar os feedbacks dos usuários no MongoDB Atlas. Os dados de feedback recebidos do frontend são enviados diretamente para o banco de dados, sem verificação da identidade do remetente.
+
+## Administração de Dados do Admin e Gráfico Dinâmico
+
+A seção de administração de dados do administrador inclui a visualização dos dados de feedback como um gráfico em pizza. O acesso a essa funcionalidade é restrito à área exclusiva do administrador. O gráfico em pizza é implementado no frontend utilizando a biblioteca Chart.js.
+
+## Testes
+
+Os testes foram realizados manualmente, incluindo testes de fumaça (smoke test), que verificam se as funcionalidades básicas estão sendo transmitidas e exibidas corretamente para os clientes.
+
+## Tecnologias Utilizadas
+
+- JavaScript
+- Node.js
+- Express
+- MongoDB Atlas
+- Mongoose
+- Chart.js
+
+## Rotas Disponíveis
+
+1. `/autenticacao`: Rota para autenticação de usuários.
+2. `/feedback`: Rota para receber e armazenar feedback dos usuários.
+3. `/admin`: Rota exclusiva para o acesso e administração dos dados pelo administrador.
+
+## Contribuições
+
+@fabricinhozzz -- Back-End API | Documentação <br>
+@expeditoernande -- Front-End
