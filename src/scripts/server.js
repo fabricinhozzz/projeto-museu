@@ -6,53 +6,89 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 3000
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static('public'))
+const dbURI = "mongodb+srv://fabricola:65c40jczWAsrflO4@cluster0.dlt0sum.mongodb.net/?retryWrites=true&w=majority"
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
-const adminCredentials = { username: 'admin', password: 'comunismo' }
+app.use(bodyParser.json())
 
-
-/*
-    modelagem de dados dos clientes
-*/
-
-
-let nextClientId = clientsDB.length + 1
-
-// posso ter errado os caminhos pro login, etc, só vai dar pra saber testando
-app.post('../public/login.html', (req, res) => {
+app.post('/login', async (req, res) => {
     const { username, password } = req.body
 
-    if (username === adminCredentials.username && password === adminCredentials.password) {
-        res.redirect('./admin.html')
-    } else{
-        const client = clientsDB.find((client) => client.username === username)
+    try {
+        const user = await User.findOne({ username, password }).exec()
 
-        if (client) {
-            if (client.password === password) {
-                res.redirect('../public/client.html')
-            } else{
-                res.send("erro: usuário ou senha incorreta!")
-            }
-        } else{
-            const newClient = { id: nextClientId++, username, password }
-            clientsDB.push(newClient)
-
-            res.send(`cadastro bem sucedido! você comprou o ingresso de número ${newClient.id}`)
+        if (!user) {
+            return res.send('Credenciais inválidas')
         }
+
+        if (user.type === 'admin') {
+            res.redirect('/admin.html')
+        } else if (user.type === 'cliente') {
+            res.redirect('/client.html')
+        } else {
+            res.send('Tipo de usuário inválido')
+        }
+    } catch (error) {
+        console.error('Erro ao autenticar:', error)
+        res.status(500).send('Erro ao autenticar')
     }
 })
 
+const User = mongoose.model('User', {
+    username: String,
+    password: String,
+    type: String
+})
 
-/*
-    envio de feedback
-*/
+const Feedback = mongoose.model('Feedback', {
+    text: String,
+    userId: String
+})
 
+const AdminData = mongoose.model('AdminData', {
+    data: String,
+    adminId: String 
+})
 
-/*
-    pegar os dados pro grafico
-*/
+app.post('/api/feedback', async (req, res) => {
+    const { text, userId } = req.body
+
+    try {
+        const feedback = new Feedback({ text, userId })
+        await feedback.save()
+
+        res.json({ message: 'Feedback enviado com sucesso' })
+    } catch (error) {
+        console.error('Erro ao enviar feedback:', error)
+        res.status(500).json({ message: 'Erro ao enviar feedback' })
+    }
+})
+
+app.post('/api/admin/addData', async (req, res) => {
+    const { data, adminId } = req.body
+
+    try {
+        const adminData = new AdminData({ data, adminId })
+        await adminData.save()
+
+        res.json({ message: 'Dados adicionados com sucesso' })
+    } catch (error) {
+        console.error('Erro ao adicionar dados:', error)
+        res.status(500).json({ message: 'Erro ao adicionar dados' })
+    }
+})
+
+app.get('/api/admin/chartData', async (req, res) => {
+    try {
+        const data = await AdminData.find().exec()
+
+        res.json(data)
+    } catch (error) {
+        console.error('Erro ao obter dados para o gráfico:', error)
+        res.status(500).json({ message: 'Erro ao obter dados para o gráfico' })
+    }
+})
 
 app.listen(port, () => {
-    console.log(`server rodando na porta ${port}`)
+    console.log(`Servidor rodando na porta ${port}`)
 })
