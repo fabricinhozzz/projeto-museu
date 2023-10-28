@@ -59,4 +59,3 @@ Os testes foram realizados manualmente, incluindo testes de fumaça (smoke test)
 ## Contribuições
 
 @fabricinhozzz -- Back-End API | Documentação <br>
-@expeditoernande -- Front-End
