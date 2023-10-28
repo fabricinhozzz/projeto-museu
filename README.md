@@ -21,13 +21,13 @@ A rota de autenticação do servidor verifica as credenciais do usuário. Por ex
 
 ### Modelo de Envio de Dados
 
-A API utiliza o modelo de envio de dados para armazenar os feedbacks dos usuários no MongoDB Atlas. Os dados de feedback recebidos do frontend são enviados diretamente para o banco de dados, sem verificação da identidade do remetente.
+A API utiliza o modelo de envio de dados para armazenar os feedbacks dos usuários no MongoDB Atlas. Os dados de feedback que seriam recebidos do frontend são enviados diretamente para o banco de dados, sem verificação da identidade do remetente.
 
 <br>
 
 ## Administração de Dados do Admin e Gráfico Dinâmico
 
-A seção de administração de dados do administrador inclui a visualização dos dados de feedback como um gráfico em pizza. O acesso a essa funcionalidade é restrito à área exclusiva do administrador. O gráfico em pizza é implementado no frontend utilizando a biblioteca Chart.js.
+A seção de administração de dados do administrador inclui a visualização dos dados de feedback como um gráfico em pizza. O acesso a essa funcionalidade é restrito à área exclusiva do administrador. O gráfico em pizza seria implementado no frontend utilizando a biblioteca Chart.js.
 
 <br>
 
@@ -44,7 +44,6 @@ Os testes foram realizados manualmente, incluindo testes de fumaça (smoke test)
 - Express
 - MongoDB Atlas
 - Mongoose
-- Chart.js 
 
 <br>
 
