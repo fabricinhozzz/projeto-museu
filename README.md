@@ -31,12 +31,6 @@ A seção de administração de dados do administrador inclui a visualização d
 
 <br>
 
-## Testes
-
-Os testes foram realizados manualmente, incluindo testes de fumaça (smoke test), que verificam se as funcionalidades básicas estão sendo transmitidas e exibidas corretamente para os clientes.
-
-<br>
-
 ## Tecnologias Utilizadas
 
 - JavaScript
